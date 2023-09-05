@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CustomImageView"
 include ':app'
-include ':ImageViewPro'
+include ':ImageViewLib'
