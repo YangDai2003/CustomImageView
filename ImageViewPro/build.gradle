@@ -3,12 +3,14 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.YangDai2003'
+
 android {
     namespace 'com.yangdai.imageviewpro'
     compileSdk 34
 
     defaultConfig {
-        minSdk 21
+        minSdk 26
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
