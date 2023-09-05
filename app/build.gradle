@@ -4,13 +4,12 @@ plugins {
 
 android {
     namespace 'com.yangdai.customimageview'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.yangdai.customimageview"
         minSdk 26
-        //noinspection EditedTargetSdkVersion
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -24,15 +23,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation project(path: ':ImageViewPro')
     testImplementation 'junit:junit:4.13.2'

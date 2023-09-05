@@ -3,19 +3,17 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.github.YangDai2003'
-
 android {
     namespace 'com.yangdai.imageviewpro'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         minSdk 26
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        versionCode 104
-        versionName '1.0.4'
+        versionCode 105
+        versionName '1.0.5'
     }
 
     buildTypes {
@@ -25,15 +23,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -44,10 +41,12 @@ afterEvaluate {
         publications {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
+                from components.release
+
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.YangDai2003'
                 artifactId = 'ImageViewPro'
-                version = '1.0.4'
+                version = '1.0.5'
             }
         }
     }
