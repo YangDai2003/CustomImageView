@@ -5,7 +5,7 @@ ImageViewPro 基于 AppCompatImageView, 在此基础上实现了图片的滑动�
 ImageViewPro is based on AppCompatImageView, and on this basis, it realizes operations such as
 sliding, zooming, and clicking of images.
 
-[![jitpack](https://jitpack.io/v/YangDai2003/ImageViewPro.svg)](https://jitpack.io/#YangDai2003/ImageViewPro)
+[![jitpack](https://jitpack.io/v/YangDai2003/ImageViewLib.svg)](https://jitpack.io/#YangDai2003/ImageViewLib)
 
 ## How to import?
 
@@ -41,7 +41,7 @@ Gradle
 
 ```code
 dependencies {
-    implementation 'com.github.YangDai2003:ImageViewPro:1.0.3'
+    implementation 'com.github.YangDai2003:ImageViewLib:1.0.6'
 }
 ```
 
@@ -50,8 +50,8 @@ Maven
 ```code
 <dependency>
     <groupId>com.github.YangDai2003</groupId>
-        <artifactId>ImageViewPro</artifactId>
-    <version>1.0.3</version>
+	<artifactId>ImageViewLib</artifactId>
+	<version>1.0.6</version>
 </dependency>
 ```
 
@@ -62,9 +62,13 @@ XML
 ```xml
 <com.yangdai.imageviewpro.ImageViewPro
     android:id="@+id/image_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@drawable/screenshot" />
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    ...
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 ```
 
 JAVA
