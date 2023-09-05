@@ -340,18 +340,17 @@ public class ImageViewProController implements View.OnTouchListener,
 
         if (mZoomEnabled && Util.hasDrawable((android.widget.ImageView) v)) {
             switch (ev.getAction()) {
-                case MotionEvent.ACTION_DOWN -> {
+                case MotionEvent.ACTION_DOWN:
                     ViewParent parent = v.getParent();
-                    // 首先禁用父视图拦截触摸事件
                     if (parent != null) {
                         parent.requestDisallowInterceptTouchEvent(true);
                     }
 
-                    // 如果正在进行fling操作，并且用户按下了屏幕，则取消fling操作
                     cancelFling();
-                }
-                case MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                    // 如果用户缩放比例小于最小缩放比例，则缩放回最小缩放比例
+                    break;
+
+                case MotionEvent.ACTION_CANCEL:
+                case MotionEvent.ACTION_UP:
                     if (getScale() < mMinScale) {
                         RectF rect = getDisplayRect();
                         if (rect != null) {
@@ -367,7 +366,7 @@ public class ImageViewProController implements View.OnTouchListener,
                             handled = true;
                         }
                     }
-                }
+                    break;
             }
 
             // 尝试使用缩放/拖动检测器
@@ -644,12 +643,24 @@ public class ImageViewProController implements View.OnTouchListener,
             }
 
             switch (mScaleType) {
-                case FIT_CENTER -> mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.CENTER);
-                case FIT_START -> mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.START);
-                case FIT_END -> mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.END);
-                case FIT_XY -> mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.FILL);
-                default -> {
-                }
+                case FIT_CENTER:
+                    mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.CENTER);
+                    break;
+
+                case FIT_START:
+                    mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.START);
+                    break;
+
+                case FIT_END:
+                    mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.END);
+                    break;
+
+                case FIT_XY:
+                    mBaseMatrix.setRectToRect(mTempSrc, mTempDst, ScaleToFit.FILL);
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -668,11 +679,17 @@ public class ImageViewProController implements View.OnTouchListener,
 
         final int viewHeight = getImageViewHeight(mImageView);
         if (height <= viewHeight) {
-            deltaY = switch (mScaleType) {
-                case FIT_START -> -rect.top;
-                case FIT_END -> viewHeight - height - rect.top;
-                default -> (viewHeight - height) / 2 - rect.top;
-            };
+            switch (mScaleType) {
+                case FIT_START:
+                    deltaY = -rect.top;
+                    break;
+                case FIT_END:
+                    deltaY = viewHeight - height - rect.top;
+                    break;
+                default:
+                    deltaY = (viewHeight - height) / 2 - rect.top;
+                    break;
+            }
         } else if (rect.top > 0) {
             deltaY = -rect.top;
         } else if (rect.bottom < viewHeight) {
@@ -681,11 +698,17 @@ public class ImageViewProController implements View.OnTouchListener,
 
         final int viewWidth = getImageViewWidth(mImageView);
         if (width <= viewWidth) {
-            deltaX = switch (mScaleType) {
-                case FIT_START -> -rect.left;
-                case FIT_END -> viewWidth - width - rect.left;
-                default -> (viewWidth - width) / 2 - rect.left;
-            };
+            switch (mScaleType) {
+                case FIT_START:
+                    deltaX = -rect.left;
+                    break;
+                case FIT_END:
+                    deltaX = viewWidth - width - rect.left;
+                    break;
+                default:
+                    deltaX = (viewWidth - width) / 2 - rect.left;
+                    break;
+            }
             mScrollEdge = EDGE_BOTH;
         } else if (rect.left > 0) {
             mScrollEdge = EDGE_LEFT;

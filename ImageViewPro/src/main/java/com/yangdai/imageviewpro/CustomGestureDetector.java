@@ -93,25 +93,27 @@ class CustomGestureDetector {
     private boolean processTouchEvent(MotionEvent ev) {
         final int action = ev.getActionMasked();
         switch (action) {
-            case MotionEvent.ACTION_DOWN -> {
+            case MotionEvent.ACTION_DOWN:
                 mActivePointerId = ev.getPointerId(0);
+
                 mVelocityTracker = VelocityTracker.obtain();
                 if (null != mVelocityTracker) {
                     mVelocityTracker.addMovement(ev);
                 }
+
                 mLastTouchX = getActiveX(ev);
                 mLastTouchY = getActiveY(ev);
                 mIsDragging = false;
-            }
-            case MotionEvent.ACTION_MOVE -> {
+                break;
+            case MotionEvent.ACTION_MOVE:
                 final float x = getActiveX(ev);
                 final float y = getActiveY(ev);
-                final float dx = x - mLastTouchX;
-                final float dy = y - mLastTouchY;
+                final float dx = x - mLastTouchX, dy = y - mLastTouchY;
+
                 if (!mIsDragging) {
-                    // 使用勾股定理判断拖动长度是否大于触摸阈值
                     mIsDragging = Math.sqrt((dx * dx) + (dy * dy)) >= mTouchSlop;
                 }
+
                 if (mIsDragging) {
                     mListener.onDrag(dx, dy);
                     mLastTouchX = x;
@@ -121,55 +123,49 @@ class CustomGestureDetector {
                         mVelocityTracker.addMovement(ev);
                     }
                 }
-            }
-            case MotionEvent.ACTION_CANCEL -> {
+                break;
+            case MotionEvent.ACTION_CANCEL:
                 mActivePointerId = INVALID_POINTER_ID;
-                // 回收
                 if (null != mVelocityTracker) {
                     mVelocityTracker.recycle();
                     mVelocityTracker = null;
                 }
-            }
-            case MotionEvent.ACTION_UP -> {
+                break;
+            case MotionEvent.ACTION_UP:
                 mActivePointerId = INVALID_POINTER_ID;
                 if (mIsDragging) {
                     if (null != mVelocityTracker) {
                         mLastTouchX = getActiveX(ev);
                         mLastTouchY = getActiveY(ev);
 
-                        // 计算最近1000ms内的速度
                         mVelocityTracker.addMovement(ev);
                         mVelocityTracker.computeCurrentVelocity(1000);
 
-                        final float vX = mVelocityTracker.getXVelocity();
-                        final float vY = mVelocityTracker.getYVelocity();
+                        final float vX = mVelocityTracker.getXVelocity(), vY = mVelocityTracker
+                                .getYVelocity();
 
-                        // 如果速度大于最小速度阈值，则调用监听器
                         if (Math.max(Math.abs(vX), Math.abs(vY)) >= mMinimumVelocity) {
-                            mListener.onFling(mLastTouchX, mLastTouchY, -vX, -vY);
+                            mListener.onFling(mLastTouchX, mLastTouchY, -vX,
+                                    -vY);
                         }
                     }
                 }
 
-                // 回收速度追踪器
                 if (null != mVelocityTracker) {
                     mVelocityTracker.recycle();
                     mVelocityTracker = null;
                 }
-            }
-            case MotionEvent.ACTION_POINTER_UP -> {
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
                 final int pointerIndex = ev.getActionIndex();
                 final int pointerId = ev.getPointerId(pointerIndex);
                 if (pointerId == mActivePointerId) {
-                    // 当前活动指针抬起，选择新的活动指针并相应调整
                     final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
                     mActivePointerId = ev.getPointerId(newPointerIndex);
                     mLastTouchX = ev.getX(newPointerIndex);
                     mLastTouchY = ev.getY(newPointerIndex);
                 }
-            }
-            default -> {
-            }
+                break;
         }
 
         mActivePointerIndex = ev.findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId : 0);
