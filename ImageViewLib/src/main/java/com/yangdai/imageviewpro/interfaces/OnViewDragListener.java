@@ -2,6 +2,7 @@ package com.yangdai.imageviewpro.interfaces;
 
 /**
  * 照片拖动监听器接口，用于在照片发生拖动事件时的回调。
+ *
  * @author 30415
  */
 public interface OnViewDragListener {

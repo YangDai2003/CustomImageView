@@ -4,6 +4,7 @@ import android.widget.ImageView;
 
 /**
  * 照片外部点击监听器接口，用于监听照片外部点击事件的回调。
+ *
  * @author 30415
  */
 public interface OnOutsidePhotoTapListener {

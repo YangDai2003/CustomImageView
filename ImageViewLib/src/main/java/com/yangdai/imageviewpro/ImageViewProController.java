@@ -167,7 +167,7 @@ public class ImageViewProController implements View.OnTouchListener,
             }
 
             @Override
-            public boolean onFling(MotionEvent e1, @NonNull MotionEvent e2,
+            public boolean onFling(@NonNull MotionEvent e1, @NonNull MotionEvent e2,
                                    float velocityX, float velocityY) {
                 if (mSingleFlingListener != null) {
                     if (getScale() > DEFAULT_MIN_SCALE) {

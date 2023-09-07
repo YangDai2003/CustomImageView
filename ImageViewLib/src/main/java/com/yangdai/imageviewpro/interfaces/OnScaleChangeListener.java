@@ -2,6 +2,7 @@ package com.yangdai.imageviewpro.interfaces;
 
 /**
  * 缩放变化监听器接口，用于监听附加的ImageView缩放发生变化时的回调。
+ *
  * @author 30415
  */
 public interface OnScaleChangeListener {
