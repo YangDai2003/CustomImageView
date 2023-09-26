@@ -10,10 +10,9 @@ android {
     defaultConfig {
         minSdk 26
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        versionCode 107
-        versionName '1.0.7'
+        versionCode 108
+        versionName '1.0.8'
     }
 
     buildTypes {
@@ -42,7 +41,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.YangDai2003'
                 artifactId = 'ImageViewPro'
-                version = '1.0.7'
+                version = '1.0.8'
             }
         }
     }

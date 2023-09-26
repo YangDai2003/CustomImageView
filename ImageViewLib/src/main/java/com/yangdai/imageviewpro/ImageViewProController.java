@@ -17,6 +17,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.OverScroller;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.yangdai.imageviewpro.interfaces.OnGestureListener;
 import com.yangdai.imageviewpro.interfaces.OnMatrixChangeListener;
@@ -55,7 +56,7 @@ public class ImageViewProController implements View.OnTouchListener,
     private boolean mAllowParentInterceptOnEdge = true;
     private boolean mBlockParentIntercept = false;
 
-    private final android.widget.ImageView mImageView;
+    private final AppCompatImageView mImageView;
 
     // 手势检测器
     private GestureDetector mGestureDetector;
@@ -143,7 +144,7 @@ public class ImageViewProController implements View.OnTouchListener,
     };
 
     @SuppressLint("ClickableViewAccessibility")
-    public ImageViewProController(android.widget.ImageView imageView) {
+    public ImageViewProController(AppCompatImageView imageView) {
         mImageView = imageView;
         imageView.setOnTouchListener(this);
         imageView.addOnLayoutChangeListener(this);
@@ -263,11 +264,6 @@ public class ImageViewProController implements View.OnTouchListener,
         this.mSingleFlingListener = onSingleFlingListener;
     }
 
-    @Deprecated
-    public boolean isZoomEnabled() {
-        return mZoomEnabled;
-    }
-
     public RectF getDisplayRect() {
         checkMatrixBounds();
         return getDisplayRect(getDrawMatrix());
@@ -338,7 +334,7 @@ public class ImageViewProController implements View.OnTouchListener,
     public boolean onTouch(View v, MotionEvent ev) {
         boolean handled = false;
 
-        if (mZoomEnabled && Util.hasDrawable((android.widget.ImageView) v)) {
+        if (mZoomEnabled && Util.hasDrawable((AppCompatImageView) v)) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     ViewParent parent = v.getParent();
@@ -725,11 +721,11 @@ public class ImageViewProController implements View.OnTouchListener,
         return true;
     }
 
-    private int getImageViewWidth(android.widget.ImageView imageView) {
+    private int getImageViewWidth(AppCompatImageView imageView) {
         return imageView.getWidth() - imageView.getPaddingLeft() - imageView.getPaddingRight();
     }
 
-    private int getImageViewHeight(android.widget.ImageView imageView) {
+    private int getImageViewHeight(AppCompatImageView imageView) {
         return imageView.getHeight() - imageView.getPaddingTop() - imageView.getPaddingBottom();
     }
 

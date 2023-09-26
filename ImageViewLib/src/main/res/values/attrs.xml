@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundRectImageView">
+        <attr name="mTileX" />
+        <attr name="mTileY" />
+        <attr name="mBorderColor" format="color" />
+        <attr name="mBorderWidth" format="dimension" />
+        <attr name="mShapeType" />
+        <attr name="mRoundRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="MosaicView">
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="mosaicColor" format="color" />
+        <attr name="tileSize" format="dimension" />
+    </declare-styleable>
+
+    <attr name="mShapeType">
+        <enum name="rounded_rect" value="1" />
+        <enum name="circle" value="2" />
+    </attr>
+    <attr name="mTileX">
+        <enum name="clamp" value="0" />
+        <enum name="mirror" value="1" />
+        <enum name="repeat" value="2" />
+    </attr>
+    <attr name="mTileY">
+        <enum name="clamp" value="0" />
+        <enum name="mirror" value="1" />
+        <enum name="repeat" value="2" />
+    </attr>
+</resources>

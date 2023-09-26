@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.yangdai.imageviewpro.ImageViewPro;
+import com.yangdai.imageviewpro.RoundRectImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageViewPro imageViewPro = findViewById(R.id.image_view);
+        RoundRectImageView roundRectImageView = new RoundRectImageView(this);
+        roundRectImageView.setImageResource(R.drawable.screenshot);
     }
 }

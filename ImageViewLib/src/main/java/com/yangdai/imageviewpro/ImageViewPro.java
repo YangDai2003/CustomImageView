@@ -127,11 +127,6 @@ public class ImageViewPro extends AppCompatImageView {
         controller.setRotationBy(rotationDegree);
     }
 
-    @Deprecated
-    public boolean isZoomEnabled() {
-        return controller.isZoomEnabled();
-    }
-
     public boolean isZoomable() {
         return controller.isZoomable();
     }
