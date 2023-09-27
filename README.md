@@ -1,20 +1,22 @@
 # ImageViewLib
 
-ImageViewLib 包含了多种使用的自定义 View：
+ImageViewLib 实现了多种常用且实用的自定义视图：
 
-MosaicView 是基于 View 实现的马赛克视图，可自定义方格大小、颜色、圆角。
+MosaicView 是继承于 View 实现的马赛克视图，可自定义方格大小、颜色、圆角，可用于表示图片的透明背景。
 
-ImageViewPro 基于 AppCompatImageView，在此基础上实现了图片的滑动、缩放、点击等操作。
+ImageViewPro 继承于 AppCompatImageView，在此基础上实现了图片的滑动、缩放、点击等操作，可用于图片的查看。
 
-RoundRectImageView 基于 AppCompatImageView，在此基础上实现了自定义边框大小、边框颜色、圆角大小。
+RoundRectImageView 继承于 AppCompatImageView，在此基础上实现了自定义边框大小、边框颜色、圆角大小，可用于图片的美化和展示。
 
-ImageViewLib contains a variety of custom Views for use:
+-----------------------------------------------------
 
-MosaicView is a mosaic view implemented based on View. The square size, color, and rounded corners can be customized.
+ImageViewLib implements a variety of commonly used and practical custom views:
 
-ImageViewPro is based on AppCompatImageView, on which it implements operations such as sliding, zooming, and clicking on images.
+MosaicView is based on View. It can customize the square size, color, and rounded corners, and can be used to represent the transparent background of pictures.
 
-RoundRectImageView is based on AppCompatImageView, on which it implements custom border size, border color, and rounded corner size.
+ImageViewPro is based on AppCompatImageView. On this basis, it implements operations such as sliding, zooming, and clicking on pictures, and can be used to view pictures.
+
+RoundRectImageView is based on AppCompatImageView. On this basis, it implements custom border size, border color, and rounded corner size, which can be used to beautify and display pictures.
 
 [![jitpack](https://jitpack.io/v/YangDai2003/ImageViewLib.svg)](https://jitpack.io/#YangDai2003/ImageViewLib)
 
